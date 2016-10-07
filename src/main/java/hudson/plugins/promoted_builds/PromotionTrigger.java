@@ -48,7 +48,7 @@ public class PromotionTrigger extends Trigger<AbstractProject> {
 
     public void consider(Promotion p) {
         if (appliesTo(p.getParent()) && job != null) {
-            job.scheduleBuild2(job.getQuietPeriod());
+            job.scheduleBuild2(job.getQuietPeriod(), new PromotionCause(p, p.getTarget()));
         }
     }
 
